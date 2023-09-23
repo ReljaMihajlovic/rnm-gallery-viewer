@@ -1,6 +1,6 @@
-export const getCharacterSet = async (api) => {
+export const getCharacterSet = async (url) => {
     try {
-        const response = await fetch(api);
+        const response = await fetch(url);
         const set = await response.json();
         return set;
     } catch (error) {
