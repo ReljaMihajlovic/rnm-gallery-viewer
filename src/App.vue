@@ -11,7 +11,7 @@ const options = {
   threshold: 1,
 };
 
-const callback = async (entries, observer) => {
+const infiniteScrollCallback = async (entries, observer) => {
   if(!entries[0].isIntersecting) return;
   // Last card is showing in the viewport
   if (!info.next) return;
@@ -20,7 +20,7 @@ const callback = async (entries, observer) => {
   observer.observe(lastCard);
 }
 
-const observer = new IntersectionObserver(callback, options);
+const observer = new IntersectionObserver(infiniteScrollCallback, options);
 
 onMounted(async () => {
   await getCharacters("https://rickandmortyapi.com/api/character/");
