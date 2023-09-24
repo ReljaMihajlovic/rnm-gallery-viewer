@@ -36,7 +36,7 @@ const getCharacters = async (url) => {
 </script>
 
 <template>
-  <main>
+  <main class="container">
     <h1 class="title">Rick and Morty Gallery</h1>
     <section class="gallery">
       <CharacterCard 

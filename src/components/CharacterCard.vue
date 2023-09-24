@@ -9,6 +9,29 @@ const props = defineProps({
 const status = computed(() => {
     return props.character.status.toLowerCase();
 });
+const creationTime = computed(() => {
+    const date = new Date(props.character.created);
+    
+    // UTC time
+    // const dayUTC = date.getUTCDate();
+    // const monthUTC = date.getUTCMonth() + 1;
+    // const yearUTC = date.getUTCFullYear();
+    // const secondsUTC = date.getUTCSeconds();
+    // const minutesUTC = date.getUTCMinutes();
+    // const hoursUTC = date.getUTCHours();
+    // const timeUTC = hoursUTC + ":" + minutesUTC + ":" + secondsUTC;
+    // return dayUTC + "." + monthUTC + "." + yearUTC + " " + timeUTC;
+
+    // Local time zone
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const seconds = date.getSeconds();
+    const minutes = date.getMinutes();
+    const hours = date.getHours();
+    const time = hours + ":" + minutes + ":" + seconds; 
+    return day + "." + month + "." + year + " " + time;
+});
 </script>
 
 <template>
@@ -16,7 +39,7 @@ const status = computed(() => {
         <img class="card__thumbnail" :src="character.image" :alt="character.name">
         <div class="card__content">
             <h2 class="card__name">{{ character.name }}</h2>
-            <small class="card__creation-time">{{ character.created }}</small>
+            <small class="card__creation-time">{{ creationTime }}</small>
             <p class="card__status">Status: <span :class="status">{{ character.status }}</span></p>
             <p class="card__location">Location: {{ character.location.name }}</p>
         </div>
