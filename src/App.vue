@@ -12,12 +12,14 @@ const options = {
 };
 
 const infiniteScrollCallback = async (entries, observer) => {
-  if(!entries[0].isIntersecting) return;
+  const lastCard = entries[0];
+  if(!lastCard.isIntersecting) return;
   // Last card is showing in the viewport
   if (!info.next) return;
   await getCharacters(info.next);
-  const lastCard = document.querySelector(".card:last-child");
-  observer.observe(lastCard);
+  observer.unobserve(lastCard.target);
+  const newLastCard = document.querySelector(".card:last-child");
+  observer.observe(newLastCard);
 }
 
 const observer = new IntersectionObserver(infiniteScrollCallback, options);
